@@ -1,8 +1,8 @@
 include("${CMAKE_CURRENT_LIST_DIR}/zig-toolchain-common.cmake")
 
-set(ZIG_LIBC "musl")
+set(ZIG_LIBC "gnuabin32")
 set(ZIG_OS "linux")
-set(ZIG_ARCH "powerpc")
+set(ZIG_ARCH "mips64")
 set(ZIG_TARGET "${ZIG_ARCH}-${ZIG_OS}-${ZIG_LIBC}")
 
 set(CMAKE_SYSTEM_NAME "Linux")
