@@ -2,7 +2,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/zig-toolchain-common.cmake")
 
 set(ZIG_CLIB "none")
 set(ZIG_OS "macos")
-set(ZIG_ARCH "x86_64")
+set(ZIG_ARCH "aarch64")
 set(ZIG_TARGET "${ZIG_ARCH}-${ZIG_OS}-${ZIG_CLIB}")
 
 set(CMAKE_SYSTEM_NAME "Darwin")
