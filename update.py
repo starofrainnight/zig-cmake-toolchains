@@ -2,6 +2,7 @@ import click
 import shutil
 import subprocess
 import json
+import re
 from jinja2 import Template
 
 
@@ -13,10 +14,15 @@ def main():
         return -1
 
     p = subprocess.run(["zig", "targets"], capture_output=True)
-    info = json.loads(p.stdout.decode())
+    targets_text = p.stdout.decode()
+
+    matched = re.search(
+        r"\.libc\s*\=\s*\.(\{[^\}]*\})", targets_text, re.MULTILINE
+    )
+    targets = re.findall(r"\"([^\"]*)\"", matched.group(1), re.MULTILINE)
     with open("zig-toolchain-template.cmake.jinja") as f:
         tpl = Template(f.read())
-    for target in set(info["libc"]):
+    for target in set(targets):
         print("Updating %s ..." % target)
         parties = target.split("-")
         content = tpl.render(
